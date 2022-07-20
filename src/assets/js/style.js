@@ -11,7 +11,7 @@ $(function () {
             max = input.attr('max');
 
         btnUp.click(function () {
-            var oldValue = parseFloat(input.val());
+            var oldValue = parseFloat(Number(input.val()));
             if (oldValue >= max) {
                 var newVal = oldValue;
             } else {
@@ -22,7 +22,7 @@ $(function () {
         });
 
         btnDown.click(function () {
-            var oldValue = parseFloat(input.val());
+            var oldValue = parseFloat(Number(input.val()));
             if (oldValue <= min) {
                 var newVal = oldValue;
             } else {
