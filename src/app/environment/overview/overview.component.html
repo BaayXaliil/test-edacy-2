@@ -1,0 +1,135 @@
+<app-navbar (onShowSidebar)="sidebar_show= $event"></app-navbar>
+<div class="container" [ngClass]="{'sidebar_show': sidebar_show}">
+    <form class="wrapper" [formGroup]="programForm" (ngSubmit)="onCreateProgram()">
+        <div class="title">Create program</div>
+        <div class="overview">
+            <div class="overview_title">Overview</div>
+            <div class="overview_form">
+                <div class="form-group">
+                    <label for="title">Program Title</label>
+                    <input type="text" class="form-control" id="title" placeholder="Ex. Front-end development 101" formControlName="title"/>
+                </div>
+                <div class="form-group tt-select">
+                    <label for="language">Program Language</label>
+                    <select class="form-select" aria-label="Default select example" name="language" [value]="1" formControlName="language">
+                        <option value="1">English</option>
+                        <option value="2">French</option>
+                        <option value="3">Arabic</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Program Level</label>
+                    <div class="form-group-inline">
+                        <label class="form-check-inline">Beginner
+                            <input type="radio" checked formControlName="level" value="beginner"/>
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="form-check-inline">Itermediate
+                            <input type="radio" formControlName="level" value="intermediate"/>
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="form-check-inline">Advanced
+                            <input type="radio" formControlName="level" value="advanced"/>
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Program Type</label>
+                    <div class="form-group-inline">
+                        <label class="form-check-inline">Foundation
+                            <input type="radio" checked formControlName="type" value="foundation"/>
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="form-check-inline">Specialization
+                            <input type="radio" formControlName="type" value="specialization"/>
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="details">
+            <div class="detail_title">Details</div>
+            <div class="detail_form">
+                <div class="form-group">
+                    <label for="title">Learning Objectives</label>
+                    <textarea name="learning" id="learning" class="form-control"
+                        placeholder="Type your description here..." formControlName="learning"></textarea>
+                    <div class="pull-tab"></div>
+                </div>
+                <div class="form-group">
+                    <label for="title">Program Description</label>
+                    <textarea name="description" id="desc" class="form-control"
+                        placeholder="Type  what students will learn here..." formControlName="description"></textarea>
+                    <div class="pull-tab"></div>
+                </div>
+                <div class="form-group-inline">
+                    <div class="form-group quantity">
+                        <label for="date">Duration (weeks)</label>
+                        <input type="number" name="weeks" id="weeks" value="1" min="0" max="100" class="form-control" formControlName="weeks"/>
+                    </div>
+                    <div class="form-group quantity">
+                        <label for="cvv">Hours per week</label>
+                        <input type="number" name="hours" id="hours" value="8" min="0" max="24" class="form-control" formControlName="hours"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="">Prerequisite</label>
+                    <input type="text" class="form-control" name="prerequisite" placeholder="Ex. Knowledge of AngularJS" formControlName="prerequisite"/>
+                </div>
+                <div class="form-group-inline">
+                    <div class="form-group">
+                        <label for="certification">Type of Certification</label>
+                        <input type="text" name="certification" id="certification" class="form-control"
+                            placeholder="Ex. Certificate of Completion" formControlName="certification" />
+                    </div>
+                    <div class="form-group">
+                        <label for="date">Start Date</label>
+                        <input type="date" name="startDate" id="date" [min]="date" class="form-control" formControlName="startDate" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="details">
+            <div class="detail_title">Details</div>
+            <div class="detail_form">
+                <div class="form-group">
+                    <div class="form-group-inline">
+                        <div class="content_left">
+                            <div class="title">Program Cover Image (Optional)</div>
+                            <div class="upload">
+                                <input type="file" name="fileImage" id="upload-favicon" accept="image/*" ref="file"
+                                    (change)="onFileChangeFav($event)" formControlName="fileImage"/>
+                                <label for="upload-favicon" class="upload-favicon">
+                                    <i class="fas fa-cloud-upload-alt" *ngIf="!favicon"></i>
+                                    <div class="upload-info" *ngIf="!favicon">
+                                        <p>Format: jpg, png, ico</p>
+                                        <p>Max size: 100 KB</p>
+                                    </div>
+                                    <img [src]="favicon" alt="" *ngIf="favicon">
+                                </label>
+                            </div>
+                        </div>
+                        <div class="content_right">
+                            <div class="title">Video Thumbnail (Optional)</div>
+                            <div class="upload">
+                                <input type="file" name="fileVideo" id="upload" ref="file"
+                                    (change)="onFileChangeLogo($event)" formControlName="fileVideo">
+                                <label for="upload" class="upload-logo">
+                                    <i class="fas fa-cloud-upload-alt" *ngIf="!logo"></i>
+                                    <div class="upload-info" *ngIf="!logo">
+                                        <p>Format: mp4, mov</p>
+                                        <p>Max size: 500 MB</p>
+                                    </div>
+                                    <img [src]="logo" alt="" *ngIf="logo">
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button class="btn btn-primary" type="submit" [disabled]="this.programForm.invalid">Create Program</button>
+    </form>
+</div>

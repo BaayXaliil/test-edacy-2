@@ -1,0 +1,73 @@
+<header [ngClass]="{'private': platform}">
+    <div class="header">
+        <div class="header_left" routerLink="/"><img src="./../../../../assets/img/logo.svg" alt="logo"></div>
+        <div class="header_right">
+            <div class="dropdown">
+                <div class="dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                    <i class="fas fa-globe"></i>
+                    <span *ngIf="true">EN</span>
+                    <span *ngIf="false">FR</span>
+                    <i class="fas fa-chevron-down lang"></i>
+                </div>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    <li><a class="dropdown-item" routerLink="#">Arabic</a></li>
+                    <li><a class="dropdown-item" routerLink="#">English</a></li>
+                    <li><a class="dropdown-item" routerLink="#">French</a></li>
+                </ul>
+            </div>
+            <div class="buttons" *ngIf="!platform">
+                <button class="btn white" routerLink="/login">log in</button>
+                <button class="btn" routerLink="/register">Get Started</button>
+            </div>
+            <div class="profile" [ngClass]="{'hidden': !platform}">
+                <div class="profile_avatar">A</div>
+                <div class="dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2" *ngIf="platform">
+                    <li><a class="dropdown-item" routerLink="/billing">Profile Setting</a></li>
+                    <li><a class="dropdown-item" routerLink="/home">Customize</a></li>
+                    <li><a class="dropdown-item" routerLink="/login">Logout</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div id="nav-bar" [ngClass]="{'l-navbar': true, 'show': sidebarShow, 'is_alert': true}" *ngIf="sidebar">
+    <nav class="nav">
+        <div class="header_toggle" id="header-toggle" (click)="onSidebarChange()">
+            <img src="./../../../../assets/img/angle_left.svg" alt="" *ngIf="sidebarShow">
+            <img src="./../../../../assets/img/angle_right_white.svg" alt="" *ngIf="!sidebarShow">
+        </div>
+        <div class="nav_list">
+            <a routerLink="/overview" class="nav_link" routerLinkActive="active">
+                <img src="./../../../../assets/img/home.svg" alt="" class="nav_icon" *ngIf="!overviewActive"> 
+                <img src="./../../../../assets/img/home_active.svg" alt="" class="nav_icon" *ngIf="overviewActive">
+                <span class="nav_name">Overview</span>
+            </a>
+            <a routerLink="#" class="nav_link" routerLinkActive="active">
+                <img src="./../../../../assets/img/custome.svg" alt="" class="nav_icon" *ngIf="!customizeActive"> 
+                <img src="./../../../../assets/img/custome_active.svg" alt="" class="nav_icon" *ngIf="customizeActive"> 
+                <span class="nav_name">Customize</span>
+            </a>
+            <a routerLink="#" class="nav_link" routerLinkActive="active"> 
+                <img src="./../../../../assets/img/integration.svg" alt="" class="nav_icon" *ngIf="!integrationActive"> 
+                <img src="./../../../../assets/img/integration_active.svg" alt="" class="nav_icon" *ngIf="integrationActive"> 
+                <span class="nav_name">Integrations</span>
+            </a>
+            <a routerLink="#" class="nav_link" routerLinkActive="active">
+                <img src="./../../../../assets/img/settings.svg" alt="" class="nav_icon"*ngIf="!settingActive">
+                <img src="./../../../../assets/img/settings_active.svg" alt="" class="nav_icon"*ngIf="settingActive">
+                <span class="nav_name">Settings</span>
+            </a>
+            <a routerLink="#" class="nav_link" routerLinkActive="active"> 
+                <img src="./../../../../assets/img/help.svg" alt="" class="nav_icon" *ngIf="!helpActive"> 
+                <img src="./../../../../assets/img/help_active.svg" alt="" class="nav_icon" *ngIf="helpActive"> 
+                <span class="nav_name">Help</span>
+            </a>
+        </div>
+    </nav>
+</div>
