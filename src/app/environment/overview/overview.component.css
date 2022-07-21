@@ -71,7 +71,7 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 .form-control:focus,
-.form-select:focus {
+.form-select.active {
     border: 2px solid var(--color-primary);
     outline: 0;
     box-shadow: none;
@@ -79,7 +79,6 @@ input[type="number"]::-webkit-outer-spin-button {
 select::-ms-expand {
     display: none;
 }
-
 .form-group-inline {
     display: flex;
     gap: 16px;
