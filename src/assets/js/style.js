@@ -36,33 +36,35 @@ $(function () {
 
     // For custom select
     const selector = document.querySelector('.custom-select')
-    selector.addEventListener('mousedown', e => {
-        e.preventDefault();
-        const select = document.querySelector('.form-select')
-        select.classList.add("active");
-        const dropdown = document.createElement('ul');
-        dropdown.className = "select-options";
-        [...select.children].forEach(option => {
-            const dropdownOption = document.createElement('li')
-            dropdownOption.textContent = option.textContent
-            dropdownOption.addEventListener('mousedown', e =>{
-                e.stopPropagation();
-                select.value = option.value
-                select.dispatchEvent(new Event('change'))
-                selector.dispatchEvent(new Event('change'))
-                dropdown.remove()
+    if (selector) {
+        selector.addEventListener('mousedown', e => {
+            e.preventDefault();
+            const select = document.querySelector('.form-select')
+            select.classList.add("active");
+            const dropdown = document.createElement('ul');
+            dropdown.className = "select-options";
+            [...select.children].forEach(option => {
+                const dropdownOption = document.createElement('li')
+                dropdownOption.textContent = option.textContent
+                dropdownOption.addEventListener('mousedown', e =>{
+                    e.stopPropagation();
+                    select.value = option.value
+                    select.dispatchEvent(new Event('change'))
+                    selector.dispatchEvent(new Event('change'))
+                    dropdown.remove()
+                })
+                dropdown.appendChild(dropdownOption)
             })
-            dropdown.appendChild(dropdownOption)
+            selector.appendChild(dropdown)
+            e.stopPropagation();
+            document.addEventListener('mousedown', e => {
+                if (!select.contains(e.target)) {
+                    select.classList.remove("active");
+                    dropdown.remove()
+                }
+            })
         })
-        selector.appendChild(dropdown)
-        e.stopPropagation();
-        document.addEventListener('mousedown', e => {
-            if (!select.contains(e.target)) {
-                select.classList.remove("active");
-                dropdown.remove()
-            }
-        })
-    })
+    }
 });
 
 

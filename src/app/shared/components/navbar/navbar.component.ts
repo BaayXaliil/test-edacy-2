@@ -49,21 +49,13 @@ export class NavbarComponent implements OnInit {
     if (this.router.url == "/manage-content") {
       this.platform = this.sidebar = true;
     }
+    if (this.router.url == "/add-week") {
+      this.platform = this.sidebar = true;
+    }
   }
 
   onSidebarChange() {
     this.sidebarShow = !this.sidebarShow
     this.onShowSidebar.emit(this.sidebarShow)
-    console.log(this.sidebarShow)
-    // this.div = event.target.parentNode.parentNode
-    // if (this.div?.className == "nav") {
-    //   event.target.parentNode.parentNode.parentNode?.classList.toggle("show")
-    //   event.target.parentNode.parentNode.parentNode.parentNode.parentNode?.classList.toggle("body-pd")
-    //   event.target.parentNode.parentNode.parentNode.parentNode.parentNode?.lastElementChild?.classList.toggle('sidebar_show')
-    // } else {
-    //   event.target.parentNode.parentNode?.classList.toggle("show")
-    //   event.target.parentNode.parentNode.parentNode.parentNode?.classList.toggle("body-pd")
-    //   event.target.parentNode.parentNode.parentNode.parentNode?.lastElementChild?.classList.toggle('sidebar_show')
-    // }
   }
 }

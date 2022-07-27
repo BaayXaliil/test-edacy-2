@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContentComponent implements OnInit {
 
+  sidebar_show: boolean = false;
   constructor() { }
 
   ngOnInit(): void {

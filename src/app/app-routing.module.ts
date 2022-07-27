@@ -1,12 +1,24 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ContentComponent } from './environment/content/content.component';
-import { OverviewComponent } from './environment/overview/overview.component';
 
 const routes: Routes = [
-  {path: "", redirectTo: "/create-program", pathMatch: "full"},
-  {path: "create-program", component: OverviewComponent},
-  {path: "manage-content", component: ContentComponent}
+  {
+    path: "", 
+    redirectTo: "/create-program", 
+    pathMatch: "full"
+  },
+  {
+    path: "manage-content",
+    loadChildren: () => import('./environment/content/content.module').then( m => m.ContentModule)
+  },
+  {
+    path: 'create-program',
+    loadChildren: ()=> import('./environment/overview/overview.module').then(m => m.OverviewModule)
+  },
+  {
+    path: 'add-week',
+    loadChildren: () => import('./environment/add-week/add-week.module').then( m => m.AddWeekModule)
+  }
 ];
 
 @NgModule({
